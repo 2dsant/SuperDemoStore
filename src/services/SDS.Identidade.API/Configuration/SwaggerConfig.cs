@@ -15,7 +15,6 @@ namespace SDS.Identidade.API.Configuration
                     Contact = new OpenApiContact() { Name = "David Santos", Email = "2dsant3@gmail.com" },
                     License = new OpenApiLicense() { Name = "MIT", Url = new Uri("https://opensource.org/licenses/MIT") }
                 });
-
             });
 
             return services;
