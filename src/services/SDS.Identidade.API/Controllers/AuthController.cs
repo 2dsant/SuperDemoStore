@@ -1,14 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
 using NSE.Identidade.API.Models;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 
 namespace SDS.Identidade.API.Controllers
 {
+    [ApiController]
     public class AuthController : Controller
     {
         private readonly SignInManager<IdentityUser> _signInManager;

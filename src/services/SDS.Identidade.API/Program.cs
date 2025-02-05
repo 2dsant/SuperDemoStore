@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using SDS.Identidade.API.Configuration;
 using SDS.Identidade.API.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,15 +15,17 @@ builder.Services.AddDefaultIdentity<IdentityUser>()
 
 builder.Services.AddControllers();
 
+builder.Services.AddSwaggerConfiguration();
+
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+app.UseSwaggerConfiguration();
+
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseDeveloperExceptionPage();
 }
 
 app.UseHttpsRedirection();

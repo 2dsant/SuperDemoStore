@@ -10,7 +10,7 @@
       "dotnetRunMessages": true,
       "applicationUrl": "http://localhost:5090"
     },
-    "https": {
+    "SuperDemoStore.API": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",
