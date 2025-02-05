@@ -1,0 +1,6 @@
+@SDS.Cliente.API_HostAddress = http://localhost:5118
+
+GET {{SDS.Cliente.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

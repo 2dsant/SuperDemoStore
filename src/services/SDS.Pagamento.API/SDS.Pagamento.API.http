@@ -1,0 +1,6 @@
+@SDS.Pagamento.API_HostAddress = http://localhost:5024
+
+GET {{SDS.Pagamento.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,0 +1,6 @@
+@SDS.Carrinho.API_HostAddress = http://localhost:5255
+
+GET {{SDS.Carrinho.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

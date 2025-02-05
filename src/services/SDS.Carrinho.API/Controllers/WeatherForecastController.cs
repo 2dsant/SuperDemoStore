@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace SDS.Identitidade.API.Controllers
+namespace SDS.Carrinho.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]

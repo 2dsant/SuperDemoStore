@@ -1,4 +1,4 @@
-namespace SDS.Identitidade.API
+namespace SDS.Pagamento.API
 {
     public class WeatherForecast
     {
