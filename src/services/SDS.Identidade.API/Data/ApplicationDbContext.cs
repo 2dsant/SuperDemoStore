@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace SDS.Identidade.API.Models
+namespace SDS.Identidade.API.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {

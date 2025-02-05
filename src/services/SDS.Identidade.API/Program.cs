@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using SDS.Identidade.API.Models;
+using SDS.Identidade.API.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
