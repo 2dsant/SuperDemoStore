@@ -20,7 +20,7 @@ namespace SDS.Identidade.API.Configuration
             return services;
         }
 
-        public static IApplicationBuilder UseSwaggerConfiguration(this IApplicationBuilder app)
+        public static WebApplication UseSwaggerConfiguration(this WebApplication app)
         {
             app.UseSwagger();
             app.UseSwaggerUI(c =>
