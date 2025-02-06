@@ -21,5 +21,6 @@ builder.Services.AddIdentityConfiguration(builder.Configuration)
 var app = builder.Build();
 
 app.UseApiConfiguration()
-    .UseSwaggerConfiguration()
-    .Run();
+    .UseSwaggerConfiguration();
+
+app.Run();
