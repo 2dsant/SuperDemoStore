@@ -11,6 +11,7 @@ using System.Text;
 namespace SDS.Identidade.API.Controllers;
 
 [ApiController]
+[Route("api/identidade")]
 public class AuthController : MainController
 {
     private readonly SignInManager<IdentityUser> _signInManager;
