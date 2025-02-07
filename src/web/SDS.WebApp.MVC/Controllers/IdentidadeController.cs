@@ -32,7 +32,7 @@ namespace SDS.WebApp.MVC.Controllers
 
             var resposta = await _autenticacaoService.Registro(usuarioRegistro);
 
-            //if (ResponsePossuiErros(resposta.ResponseResult)) return View(usuarioRegistro);
+            if (ResponsePossuiErros(resposta.ResponseResult)) return View(usuarioRegistro);
 
             await RealizarLogin(resposta);
 
@@ -54,19 +54,21 @@ namespace SDS.WebApp.MVC.Controllers
 
             var resposta = await _autenticacaoService.Login(usuarioLogin);
 
+            if (ResponsePossuiErros(resposta.ResponseResult)) return View(usuarioLogin);
+
             await RealizarLogin(resposta);
 
             return RedirectToAction("Index", "Home");
         }
 
 
-        //[HttpGet]
-        //[Route("sair")]
-        //public async Task<IActionResult> Logout()
-        //{
-        //    await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-        //    return RedirectToAction("Index", "Home");
-        //}
+        [HttpGet]
+        [Route("sair")]
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Index", "Home");
+        }
 
         private async Task RealizarLogin(UsuarioRespostaLogin resposta)
         {
