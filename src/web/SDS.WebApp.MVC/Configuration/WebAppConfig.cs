@@ -5,9 +5,11 @@ namespace SDS.WebApp.MVC.Configuration
 {
     public static class WebAppConfig
     {
-        public static IServiceCollection AddMvcConfiguration(this IServiceCollection services)
+        public static IServiceCollection AddMvcConfiguration(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddControllersWithViews();
+
+            services.Configure<AppSettings>(configuration);
 
             return services;
         }
