@@ -1,4 +1,5 @@
 ﻿using NSE.WebApp.MVC.Configuration;
+using SDS.WebApp.MVC.Extensions;
 
 namespace SDS.WebApp.MVC.Configuration
 {
@@ -15,8 +16,13 @@ namespace SDS.WebApp.MVC.Configuration
         {
             if (!app.Environment.IsDevelopment())
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseDeveloperExceptionPage();
                 app.UseHsts();
+            } else
+            {
+                app.UseExceptionHandler("/erro/500");
+                app.UseStatusCodePagesWithRedirects("/erro/{0}");
+                app.UseHsts();  
             }
 
             app.UseHttpsRedirection();
@@ -25,6 +31,8 @@ namespace SDS.WebApp.MVC.Configuration
             app.UseRouting();
 
             app.UseIdentityConfiguration();
+
+            app.UseMiddleware<ExceptionMiddleware>();
 
             app.MapControllerRoute(
                 name: "default",
