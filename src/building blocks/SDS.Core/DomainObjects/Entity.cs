@@ -9,7 +9,7 @@
             var compareTo = obj as Entity;
 
             if (ReferenceEquals(this, compareTo)) return true;
-            if (ReferenceEquals(this, compareTo)) return false;
+            if (ReferenceEquals(null, compareTo)) return false;
 
             return Id.Equals(compareTo.Id);
         }
