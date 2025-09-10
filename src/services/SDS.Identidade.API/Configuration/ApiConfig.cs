@@ -1,34 +1,33 @@
-﻿namespace SDS.Identidade.API.Configuration
+﻿using SDS.WebAPI.Core.Identidade;
+
+namespace SDS.Identidade.API.Configuration;
+
+public static class ApiConfig
 {
-    public static class ApiConfig
+    public static WebApplicationBuilder AddApiConfiguration(this WebApplicationBuilder builder)
     {
-        public static IServiceCollection AddApiConfiguration(this IServiceCollection services)
+        builder.Services.AddControllers();
+
+        builder.Services.AddEndpointsApiExplorer();
+
+        return builder;
+    }
+
+    public static WebApplication UseApiConfiguration(this WebApplication app)
+    {
+        if (app.Environment.IsDevelopment())
         {
-            services.AddControllers();
-
-            services.AddEndpointsApiExplorer();
-
-            return services;
+            app.UseDeveloperExceptionPage();
         }
 
-        public static WebApplication UseApiConfiguration(this WebApplication app)
-        {
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+        app.UseHttpsRedirection();
 
-            app.UseHttpsRedirection();
+        app.UseRouting();
 
-            app.UseRouting();
+        app.UseAuthConfiguration();
 
-            app.UseAuthentication();
+        app.MapControllers();
 
-            app.UseAuthorization();
-
-            app.MapControllers();
-
-            return app;
-        }
+        return app;
     }
 }

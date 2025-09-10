@@ -14,7 +14,7 @@ if (builder.Environment.IsDevelopment())
     builder.Configuration.AddUserSecrets(Assembly.GetExecutingAssembly(), true);
 }
 
-builder.Services.AddIdentityConfiguration(builder.Configuration)
+builder.AddIdentityConfiguration()
     .AddApiConfiguration()
     .AddSwaggerConfiguration();
 

@@ -1,6 +1,6 @@
 ﻿using Microsoft.OpenApi.Models;
 
-namespace SDS.Identidade.API.Configuration;
+namespace SDS.Catalogo.API.Configuration;
 
 public static class SwaggerConfig
 {
@@ -10,7 +10,7 @@ public static class SwaggerConfig
         {
             c.SwaggerDoc("v1", new OpenApiInfo()
             {
-                Title = "SuperDemo Store API",
+                Title = "SuperDemo Catalogo API",
                 Description = "API para revisar conceitos de arquitetura distribuida.",
                 Contact = new OpenApiContact() { Name = "David Santos", Email = "2dsant3@gmail.com" },
                 License = new OpenApiLicense() { Name = "MIT", Url = new Uri("https://opensource.org/licenses/MIT") }

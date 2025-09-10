@@ -1,19 +1,26 @@
-using Microsoft.EntityFrameworkCore;
-using SDS.Catalogo.API.Data;
-using SDS.Catalogo.API.Data.Repository;
-using SDS.Identidade.API.Models;
+using SDS.Catalogo.API.Configuration;
+using SDS.WebAPI.Core.Identidade;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Configuration
+    .SetBasePath(builder.Environment.ContentRootPath)
+    .AddJsonFile("appsettings.json", true, true)
+    .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", true, true)
+    .AddEnvironmentVariables();
 
-builder.Services.AddDbContext<CatalogoContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+if (builder.Environment.IsDevelopment())
+{
+    builder.Configuration.AddUserSecrets<Program>();
+}
 
-builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
-builder.Services.AddScoped<CatalogoContext>();
+builder.AddApiConfiguration();
+
+builder.AddJwtConfiguration();
+
+builder.AddSwaggerConfiguration();
+
+builder.RegisterServices();
 
 var app = builder.Build();
 
@@ -23,10 +30,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseSwaggerConfiguration();
+
+app.UseApiConfiguration();
+
 app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
 
 app.Run();

@@ -1,8 +1,8 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Identity;
-using SDS.Identidade.API.Extensions;
 using Microsoft.Extensions.Options;
+using SDS.WebAPI.Core.Identidade;
 using NSE.Identidade.API.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;

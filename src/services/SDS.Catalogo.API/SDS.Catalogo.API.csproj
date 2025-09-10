@@ -23,11 +23,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\building blocks\SDS.Core\SDS.Core.csproj" />
+    <ProjectReference Include="..\..\building blocks\Services\SDS.WebAPI.Core\SDS.WebAPI.Core.csproj" />
   </ItemGroup>
 
 </Project>

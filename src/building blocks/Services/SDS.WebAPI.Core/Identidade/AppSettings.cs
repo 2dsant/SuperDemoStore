@@ -1,4 +1,4 @@
-﻿namespace SDS.Identidade.API.Extensions
+﻿namespace SDS.WebAPI.Core.Identidade
 {
     public class AppSettings
     {

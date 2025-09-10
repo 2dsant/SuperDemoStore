@@ -1,52 +1,26 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using SDS.Identidade.API.Data;
 using SDS.Identidade.API.Extensions;
-using System.Text;
+using SDS.WebAPI.Core.Identidade;
+using SDS.Identidade.API.Data;
 
-namespace SDS.Identidade.API.Configuration
+namespace SDS.Identidade.API.Configuration;
+
+public static class IdentityConfig
 {
-    public static class IdentityConfig
+    public static WebApplicationBuilder AddIdentityConfiguration(this WebApplicationBuilder builder)
     {
-        public static IServiceCollection AddIdentityConfiguration(this IServiceCollection services, IConfiguration configuration)
-        {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+        builder.Services.AddDbContext<ApplicationDbContext>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDefaultIdentity<IdentityUser>()
+        builder.Services.AddDefaultIdentity<IdentityUser>()
             .AddRoles<IdentityRole>()
                 .AddErrorDescriber<IdentityMensagemPortugues>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            // JWT
-            var appSettingsSection = configuration.GetSection("AppSettings");
-            services.Configure<AppSettings>(appSettingsSection);
-            var appSettings = appSettingsSection.Get<AppSettings>();
-            var key = Encoding.ASCII.GetBytes(appSettings.Secret);
+        builder.AddJwtConfiguration();
 
-            services.AddAuthentication(x =>
-            {
-                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(x =>
-            {
-                x.RequireHttpsMetadata = false;
-                x.SaveToken = true;
-                x.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(key),
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidAudience = appSettings.ValidoEm,
-                    ValidIssuer = appSettings.Emissor
-                };
-            });
-
-            return services;
-        }
+        return builder;
     }
 }
